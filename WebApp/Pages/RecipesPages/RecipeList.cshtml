@@ -1,0 +1,20 @@
+﻿@page
+@model WebApp.Pages.RecipesPages.RecipeList
+
+
+@if (Model.RecipesList != null && Model.RecipesList.Any())
+{
+    foreach (var recipe in Model.RecipesList)
+    {
+        <div>
+            @recipe.RecipeName Servings: @recipe.ServingSize Cooking: @recipe.TimeToServe min
+            <a asp-page="ViewRecipe" asp-route-Servings="@Model.Servings" asp-route-RecipeId="@recipe.Id" asp-route-UserId="@Model.UserId">View</a>
+        </div>
+
+    }
+}
+else
+{
+    <h2>No Available Recipes</h2>
+    <a asp-page="FilterRecipe" asp-route-UserId="@Model.UserId">Back to Filter</a>
+}

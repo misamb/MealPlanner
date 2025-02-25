@@ -1,0 +1,37 @@
+@page
+@model WebApp.Pages_RecipeProducts.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>RecipeProduct</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RecipeProduct.ProductAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RecipeProduct.ProductAmount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RecipeProduct.Product)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RecipeProduct.Product!.ProductMeasurment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RecipeProduct.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RecipeProduct.User!.RecipeDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.RecipeProduct.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

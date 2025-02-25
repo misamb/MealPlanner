@@ -1,0 +1,16 @@
+﻿@page
+@using Domain
+@model WebApp.Pages.RecipesPages.ViewRecipe
+
+<h2>@Model.Recipe!.RecipeName</h2>
+
+<div>Products</div>
+
+@foreach (var rp in @Model.RecipeProducts!)
+{
+    <div>@rp.Product!.ProductName @(@rp.ProductAmount * @Model.Multiplier) @rp.Product.ProductMeasurment</div>
+}
+
+<div>@Model.Recipe.RecipeDescription</div>
+
+<a asp-page="/UserHome" asp-route-UserId="@Model.UserId">Back To Home</a>

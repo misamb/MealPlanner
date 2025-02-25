@@ -1,0 +1,53 @@
+﻿@page
+@model WebApp.Pages.UserHome
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Column Layout</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Available Recipes</h2>
+            <p>
+                @if (Model.AvailableRecipesList != null && Model.AvailableRecipesList.Any())
+                {
+                    foreach (var recipe in Model.AvailableRecipesList)
+                    {
+                        <div>
+                            @recipe.RecipeName Servings: @recipe.ServingSize Cooking: @recipe.TimeToServe min
+                            <a asp-page="/RecipesPages/ViewRecipe" asp-route-Servings="@recipe.ServingSize" asp-route-RecipeId="@recipe.Id" asp-route-UserId="@Model.UserId">View</a>
+                        </div>
+
+                    }
+                }
+            <a asp-page="/RecipesPages/FilterRecipe" asp-route-UserId="@Model.UserId">Fiter Recipes</a>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h2>Current Products</h2>
+            <p>
+                @if (Model.ProductsList != null && Model.ProductsList.Any())
+                {
+                    foreach (var userProduct in Model.ProductsList)
+                    {
+                        <div>
+                            @userProduct.Product!.ProductName @userProduct.ProductAmount @userProduct.Product!.ProductMeasurment
+                        </div>
+                        
+                    }
+                }
+            </p>
+            <a asp-page="/ProductManagement/Index" asp-route-UserId="@Model.UserId">Manage Products</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

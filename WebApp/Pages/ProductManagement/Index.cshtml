@@ -1,0 +1,40 @@
+﻿@page
+@model WebApp.Pages.ProductManagement.IndexModel
+
+
+<h1>Manage Products</h1>
+
+<p>
+    <a asp-page="Add" asp-route-UserId="@Model.UserId">Add Product</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserProduct[0].Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserProduct[0].ProductAmount)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.UserProduct)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product!.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductAmount)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-UserId="@Model.UserId" asp-route-UserProductId="@item.Id">Edit</a> |
+                <a asp-page="./Delete" asp-route-UserId="@Model.UserId" asp-route-UserProductId="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<a asp-page="/UserHome" asp-route-UserId="@Model.UserId">Back To Home</a>

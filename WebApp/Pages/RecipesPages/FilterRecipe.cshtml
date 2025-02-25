@@ -1,0 +1,41 @@
+﻿@page
+@model WebApp.Pages.RecipesPages.FilterRecipe
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Include Products</h2>
+                <p>
+                    @for (int i = 0; i < Model.IncludeProductSelectList!.Count; i++)
+                    {
+                        <div>
+                            <input asp-for="@Model.IncludeProductSelectList![i].IsSelected" type="checkbox"/>
+                            <label asp-for="@Model.IncludeProductSelectList[i].IsSelected">@Model.IncludeProductSelectList[i].Product!.ProductName</label>
+                            <input asp-for="@Model.IncludeProductSelectList[i].Product!.Id" type="hidden"/>
+                        </div>
+                    }
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h2>Exclude Products</h2>
+                <p>
+                    @for (int i = 0; i < Model.ExcludeProductSelectList!.Count; i++)
+                    {
+                        <div>
+                            <input asp-for="@Model.ExcludeProductSelectList[i].IsSelected" type="checkbox"/>
+                            <label asp-for="@Model.ExcludeProductSelectList[i].IsSelected">@Model.ExcludeProductSelectList[i].Product!.ProductName</label>
+                            <input asp-for="@Model.ExcludeProductSelectList[i].Product!.Id" type="hidden"/>
+                        </div>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+    <label asp-for="@Model.MaxMinutes" class="control-label"></label>
+    <input asp-for="@Model.MaxMinutes" class="form-control"/>
+    <label asp-for="@Model.Servings" class="control-label"></label>
+    <input asp-for="@Model.Servings" class="form-control"/>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary"/>
+    </div>
+</form>
